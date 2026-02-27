@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Live Signal Feed - Whale Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Live Signal Feed</h1>
+    <div class="stats-bar">
+        <div class="stat-chip">
+            <span class="stat-label">Traders</span>
+            <span class="stat-value">{{ stats.total_traders | default(0) }}</span>
+        </div>
+        <div class="stat-chip">
+            <span class="stat-label">Markets</span>
+            <span class="stat-value">{{ stats.total_markets | default(0) }}</span>
+        </div>
+        <div class="stat-chip">
+            <span class="stat-label">Bets</span>
+            <span class="stat-value">{{ stats.total_bets | default(0) }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="filter-bar">
+    <form method="get" action="/" class="filter-form">
+        <label for="min_score">Min Score</label>
+        <input
+            type="number"
+            id="min_score"
+            name="min_score"
+            value="{{ min_score | default(0) }}"
+            min="0"
+            max="100"
+            step="5"
+            class="filter-input"
+        >
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+</div>
+
+<div
+    id="signal-feed"
+    hx-get="/api/signals?min_score={{ min_score | default(0) }}&limit=20"
+    hx-trigger="every 30s"
+    hx-swap="none"
+>
+    {% if signals %}
+        {% for signal in signals %}
+        <div class="signal-card {% if signal.conviction_score >= 80 %}signal-high{% elif signal.conviction_score >= 60 %}signal-med{% else %}signal-low{% endif %}">
+            <div class="signal-header">
+                <span class="conviction-badge {% if signal.conviction_score >= 80 %}badge-high{% elif signal.conviction_score >= 60 %}badge-med{% else %}badge-low{% endif %}">
+                    {{ signal.conviction_score | round(1) }}
+                </span>
+                <span class="text-muted">{{ signal.timestamp | time_ago }}</span>
+            </div>
+            <div class="signal-body">
+                <a href="/markets/{{ signal.market_id }}" class="signal-market">
+                    {{ signal.question | default(signal.market_id) }}
+                </a>
+                <div class="signal-outcome">{{ signal.outcome }}</div>
+                <div class="signal-scores">
+                    <span class="score-chip" title="Smart Money">SM {{ signal.smart_money_score | round(1) }}</span>
+                    <span class="score-chip" title="Volume Spike">VS {{ signal.volume_spike_score | round(1) }}</span>
+                    <span class="score-chip" title="Cluster">CL {{ signal.cluster_score | round(1) }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <p>No signals found{% if min_score > 0 %} with score above {{ min_score }}{% endif %}.</p>
+            <p class="text-muted">Signals will appear here as whale activity is detected.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,235 @@
+================================================================================
+              POLYMARKET WIN RATE LEADERBOARD
+================================================================================
+Last updated: 2024-01-15 14:45:32 UTC
+Legend: * = Statistically significant (10+ bets) | ~ = Insufficient data
+
+Database Summary:
+  Traders: 1,247
+  Markets: 156 (89 active)
+  Total Bets: 45,678
+
+Top 20 by Win Rate (min 20 resolved bets)
+------------------------------------------------------------------------------------------
+Rank  Sig  Address        Win Rate       W/L    Conf Int              Streak   Risk-Adj
+------------------------------------------------------------------------------------------
+#1    *    0x7a3f...9e2c     72.4%     89/34   [66.2% - 77.8%]           W5       2.34
+#2    *    0x2b8d...4f1a     71.2%     74/30   [64.5% - 77.1%]           W3       2.18
+#3    *    0x9c4e...7d3b     68.9%     62/28   [61.4% - 75.5%]           L2       1.95
+#4    *    0x1f6a...2e9c     67.3%     68/33   [60.2% - 73.7%]           W8       2.45
+#5    *    0x8d2c...5a7f     65.8%     52/27   [58.0% - 72.8%]           W2       1.87
+#6    *    0x4e9b...8c1d     64.5%     49/27   [56.5% - 71.7%]           L1       1.72
+#7    *    0x6f3a...9e2b     63.2%     43/25   [54.8% - 70.8%]           W4       1.68
+#8    *    0x3c7d...1f4e     62.1%     41/25   [53.5% - 70.0%]           L3       1.54
+#9    *    0x5a2e...6b8c     61.5%     40/25   [52.8% - 69.5%]           W1       1.49
+#10   *    0x8b1f...3d9a     60.8%     39/25   [52.0% - 68.9%]           W2       1.42
+#11   *    0x2d6c...7e4f     59.3%     35/24   [50.3% - 67.7%]           L4       1.28
+#12   *    0x9e3a...1c8b     58.5%     31/22   [49.2% - 67.2%]           W1       1.21
+#13   *    0x4f8d...2a6e     57.1%     28/21   [47.5% - 66.2%]           L2       1.15
+#14   ~    0x7c1e...5b9d     56.3%     18/14   [44.3% - 67.6%]           W3       1.08
+#15   ~    0x1a9f...8c3e     55.0%     11/9    [39.8% - 69.4%]           L1       0.95
+#16   *    0x6d4b...2f7a     54.8%     29/24   [45.5% - 63.8%]           W2       0.98
+#17   *    0x3e8c...9a1d     53.5%     23/20   [43.9% - 62.8%]           L2       0.89
+#18   *    0x5f2a...4c6b     52.4%     22/20   [42.7% - 61.8%]           W1       0.82
+#19   ~    0x8a7e...1d3f     51.7%     15/14   [39.4% - 63.7%]           L1       0.75
+#20   *    0x2c9d...6e8a     50.9%     28/27   [42.0% - 59.7%]           W2       0.68
+
+Top 10 Longest Winning Streaks
+------------------------------------------------------------
+Rank  Address        Best Streak    Current     Win Rate
+------------------------------------------------------------
+#1    0x1f6a...2e9c          W12         W8       67.3%
+#2    0x4d2e...8b1c          W11         L2       58.2%
+#3    0x7a3f...9e2c          W10         W5       72.4%
+#4    0x9b3e...2f7d           W9         W4       61.8%
+#5    0x2b8d...4f1a           W8         W3       71.2%
+#6    0x6f3a...9e2b           W8         W4       63.2%
+#7    0x3c7d...1f4e           W7         L3       62.1%
+#8    0x5a2e...6b8c           W7         W1       61.5%
+#9    0x8d2c...5a7f           W6         W2       65.8%
+#10   0x4e9b...8c1d           W6         L1       64.5%
+
+Press Ctrl+C to exit
+
+
+================================================================================
+WIN RATE ANALYSIS: 0x7a3f8d2e...
+================================================================================
+
+Overall Performance:
+  Resolved Bets:    123
+  Wins:             89
+  Losses:           34
+  Ties/Cancelled:   5
+  Win Rate:         72.4%
+  Statistical Sig:  Yes (sufficient data)
+  95% Confidence:   [66.2% - 77.8%]
+
+Streaks:
+  Current:          W5
+  Best Winning:     W10
+  Worst Losing:     L4
+
+Win Rate by Category:
+  Category             Win Rate        W/L       Volume
+  -------------------------------------------------------
+  crypto                  78.5%       42/12     $234,567
+  politics                71.2%       27/11     $156,789
+  sports                  65.4%       17/9       $89,450
+  tech                    61.5%        8/5       $45,230
+
+Win Rate by Bet Size:
+  Size         Win Rate        W/L      Avg Bet          PNL
+  ------------------------------------------------------------
+  Small           68.2%       45/21        $67      $2,345
+  Medium          74.3%       32/11       $456     $12,678
+  Large           76.9%       10/3      $2,340     $18,450
+
+Kelly Criterion Analysis:
+  Optimal Bet Size: 12.4% of bankroll
+  Your Avg Size:    8.7% of volume
+  Kelly Multiple:   0.70x
+  Status:           Conservative/Optimal
+  Recommendation:   Near-optimal bet sizing (0.70x Kelly). Well-managed risk.
+
+Risk Metrics:
+  Sharpe Ratio:     1.85
+  Max Drawdown:     15.3%
+  Risk-Adj Return:  2.34
+
+
+================================================================================
+EXAMPLE JSON EXPORT (win_rate_analysis.json)
+================================================================================
+
+{
+  "wallet_address": "0x7a3f8d2e4c6b9a1f3e5d7c8b2a4e6f9d1c3b5a7e9c2d4f6a8b1e3d5c7f9a2e4c",
+  "overall": {
+    "total_resolved_bets": 123,
+    "wins": 89,
+    "losses": 34,
+    "ties": 5,
+    "cancelled": 0,
+    "win_rate": 72.36,
+    "has_sufficient_data": true
+  },
+  "by_category": {
+    "crypto": {
+      "wins": 42,
+      "losses": 12,
+      "ties": 2,
+      "win_rate": 77.78,
+      "volume": 234567.0,
+      "pnl": 45678.90
+    },
+    "politics": {
+      "wins": 27,
+      "losses": 11,
+      "ties": 2,
+      "win_rate": 71.05,
+      "volume": 156789.0,
+      "pnl": 23456.78
+    },
+    "sports": {
+      "wins": 17,
+      "losses": 9,
+      "ties": 1,
+      "win_rate": 65.38,
+      "volume": 89450.0,
+      "pnl": 12345.67
+    }
+  },
+  "by_bet_size": {
+    "small": {
+      "wins": 45,
+      "losses": 21,
+      "ties": 3,
+      "win_rate": 68.18,
+      "avg_bet_size": 67.45,
+      "pnl": 2345.67
+    },
+    "medium": {
+      "wins": 32,
+      "losses": 11,
+      "ties": 2,
+      "win_rate": 74.42,
+      "avg_bet_size": 456.78,
+      "pnl": 12678.90
+    },
+    "large": {
+      "wins": 10,
+      "losses": 3,
+      "ties": 0,
+      "win_rate": 76.92,
+      "avg_bet_size": 2340.00,
+      "pnl": 18450.00
+    }
+  },
+  "streaks": {
+    "current_streak": 5,
+    "current_streak_type": "winning",
+    "longest_winning_streak": 10,
+    "longest_losing_streak": 4,
+    "streak_history": [
+      {"length": 6, "type": "winning", "end_date": "2024-01-10T15:30:00"},
+      {"length": 2, "type": "losing", "end_date": "2024-01-11T12:45:00"},
+      {"length": 10, "type": "winning", "end_date": "2024-01-14T09:15:00"}
+    ]
+  },
+  "confidence_interval": {
+    "lower": 66.24,
+    "upper": 77.82,
+    "confidence_level": 0.95,
+    "is_significant": true
+  },
+  "kelly_analysis": {
+    "optimal_fraction": 12.4,
+    "actual_avg_fraction": 8.7,
+    "edge": 8.76,
+    "is_overbetting": false,
+    "kelly_multiple": 0.70,
+    "recommendation": "Near-optimal bet sizing (0.70x Kelly). Well-managed risk."
+  },
+  "risk_metrics": {
+    "sharpe_ratio": 1.85,
+    "max_drawdown": 15.3,
+    "risk_adjusted_return": 2.34
+  }
+}
+
+
+================================================================================
+EDGE CASES HANDLED
+================================================================================
+
+1. TIES / CANCELLED MARKETS:
+   - Markets with outcome = "tie", "void", "cancelled", or "refund"
+   - NOT counted in win/loss calculations (excluded from decisive bets)
+   - Tracked separately for transparency
+
+2. PARTIAL FILLS:
+   - Bets with status containing "partial"
+   - Flagged as MarketStatus.PARTIAL
+   - Can be included or excluded based on analysis needs
+
+3. MARKET CANCELLATIONS:
+   - Markets where resolved=true but outcome indicates cancellation
+   - Treated same as ties (refund scenario)
+
+4. MULTIPLE BETS ON SAME MARKET:
+   - Net position calculated across all buys/sells
+   - Win/loss determined by final position at resolution
+
+5. SELL POSITIONS:
+   - Selling is opposite logic: you win if outcome you sold doesn't happen
+   - Correctly handles short positions
+
+6. INSUFFICIENT DATA:
+   - Traders with <10 resolved bets flagged as insufficient
+   - Wider confidence intervals shown
+   - Filtered from leaderboard with --min-bets flag
+
+7. STATISTICAL SIGNIFICANCE:
+   - Wilson score interval used (better for small samples)
+   - 95% confidence intervals provided
+   - Clear indicators (* vs ~) in dashboard

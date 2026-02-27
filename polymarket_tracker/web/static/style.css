@@ -1,0 +1,610 @@
+/* ====================================================================
+   Polymarket Whale Tracker — Dark Theme Stylesheet
+   ==================================================================== */
+
+:root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d37;
+    --text: #e4e4e7;
+    --text-muted: #71717a;
+    --accent: #3b82f6;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+}
+
+/* ---- Reset & Base ---- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---- Layout ---- */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---- Navbar ---- */
+
+.navbar {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+}
+
+.nav-brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+
+.nav-brand:hover {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 8px;
+}
+
+.nav-link {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+    background-color: var(--border);
+    color: var(--text);
+    text-decoration: none;
+}
+
+.nav-link.active {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+/* ---- Footer ---- */
+
+.footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* ---- Page Header ---- */
+
+.page-header {
+    padding: 32px 0 16px;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+/* ---- Stats Bar ---- */
+
+.stats-bar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.stat-chip {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.stat-label {
+    color: var(--text-muted);
+}
+
+.stat-value {
+    font-weight: 600;
+}
+
+/* ---- Stat Grid (whale profile cards) ---- */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 16px 0 24px;
+}
+
+.stat-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.stat-card-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.stat-card-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ---- Detail Row ---- */
+
+.detail-row {
+    padding: 6px 0;
+    font-size: 0.9rem;
+}
+
+.detail-label {
+    color: var(--text-muted);
+    margin-right: 8px;
+}
+
+/* ---- Filter Bar ---- */
+
+.filter-bar {
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-form label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.filter-input {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    width: 100px;
+}
+
+.filter-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+select.filter-input {
+    width: auto;
+    cursor: pointer;
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: var(--surface);
+    color: var(--text-muted);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border);
+    color: var(--text);
+}
+
+.grade-filter {
+    display: flex;
+    gap: 6px;
+}
+
+/* ---- Signal Cards ---- */
+
+.signal-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    border-left: 4px solid var(--border);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    transition: border-color 0.15s;
+}
+
+.signal-card.signal-high {
+    border-left-color: var(--red);
+}
+
+.signal-card.signal-med {
+    border-left-color: var(--yellow);
+}
+
+.signal-card.signal-low {
+    border-left-color: var(--green);
+}
+
+.signal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.signal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.signal-market {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.signal-market:hover {
+    color: var(--accent);
+}
+
+.signal-outcome {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.signal-scores {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.score-chip {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background-color: var(--bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* ---- Conviction & Grade Badges ---- */
+
+.conviction-badge {
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.badge-high {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--red);
+}
+
+.badge-med {
+    background-color: rgba(234, 179, 8, 0.15);
+    color: var(--yellow);
+}
+
+.badge-low {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: var(--green);
+}
+
+.grade-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.grade-a {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: var(--green);
+}
+
+.grade-b {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: var(--accent);
+}
+
+.grade-c {
+    background-color: rgba(234, 179, 8, 0.15);
+    color: var(--yellow);
+}
+
+.grade-d {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--red);
+}
+
+.grade-ungraded {
+    background-color: rgba(113, 113, 122, 0.15);
+    color: var(--text-muted);
+}
+
+/* ---- Side Badges (BUY / SELL) ---- */
+
+.side-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.side-buy {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: var(--green);
+}
+
+.side-sell {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: var(--red);
+}
+
+/* ---- Meta Line (market detail) ---- */
+
+.meta-line {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.meta-chip {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+.meta-resolved {
+    background-color: rgba(34, 197, 94, 0.1);
+    border-color: var(--green);
+    color: var(--green);
+}
+
+/* ---- Tables ---- */
+
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 24px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.data-table thead {
+    background-color: var(--bg);
+}
+
+.data-table th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.04);
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-link {
+    color: var(--text);
+}
+
+.table-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* ---- Section Heading ---- */
+
+.section-heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ---- Signal List (market detail) ---- */
+
+.signal-list {
+    margin-bottom: 24px;
+}
+
+/* ---- Empty State ---- */
+
+.empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    background-color: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    margin: 16px 0;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.empty-state .btn {
+    margin-top: 16px;
+}
+
+/* ---- Utilities ---- */
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.monospace {
+    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+}
+
+.full-address {
+    font-size: 0.8rem;
+    word-break: break-all;
+    user-select: all;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 768px) {
+    .nav-inner {
+        flex-direction: column;
+        height: auto;
+        padding: 12px 0;
+        gap: 8px;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .page-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .stats-bar {
+        gap: 6px;
+    }
+
+    .stat-chip {
+        padding: 4px 10px;
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-input {
+        width: 100%;
+    }
+}

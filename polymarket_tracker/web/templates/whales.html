@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Whale Directory - Whale Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Whale Directory</h1>
+    <div class="filter-bar">
+        <div class="grade-filter">
+            <a href="/whales" class="btn {% if not grade %}btn-primary{% else %}btn-secondary{% endif %}">All</a>
+            <a href="/whales?grade=A" class="btn {% if grade == 'A' %}btn-primary{% else %}btn-secondary{% endif %}">A</a>
+            <a href="/whales?grade=B" class="btn {% if grade == 'B' %}btn-primary{% else %}btn-secondary{% endif %}">B+</a>
+        </div>
+    </div>
+</div>
+
+{% if whales %}
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Wallet</th>
+                <th>Grade</th>
+                <th>Win Rate</th>
+                <th>Volume</th>
+                <th>Resolved Bets</th>
+                <th>Pattern</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for w in whales %}
+            <tr>
+                <td>
+                    <a href="/whales/{{ w.wallet_address }}" class="table-link monospace">
+                        {{ w.wallet_address | address }}
+                    </a>
+                </td>
+                <td>
+                    <span class="grade-badge grade-{{ w.grade | lower }}">{{ w.grade }}</span>
+                </td>
+                <td>{{ (w.win_rate * 100) | round(1) }}%</td>
+                <td>{{ w.total_volume | usd }}</td>
+                <td>{{ w.total_resolved_bets }}</td>
+                <td>{{ w.activity_pattern | default("--") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No whale profiles found{% if grade %} for grade {{ grade }}{% endif %}.</p>
+    <p class="text-muted">Whale profiles are generated from profiling analysis.</p>
+</div>
+{% endif %}
+{% endblock %}

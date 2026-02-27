@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}{% if market %}{{ market.question | truncate(60) }}{% else %}Market{% endif %} - Whale Tracker{% endblock %}
+
+{% block content %}
+{% if market %}
+<div class="page-header">
+    <h1>{{ market.question }}</h1>
+    <div class="meta-line">
+        {% if market.category %}
+            <span class="meta-chip">{{ market.category }}</span>
+        {% endif %}
+        {% if market.volume %}
+            <span class="meta-chip">Volume: {{ market.volume | usd }}</span>
+        {% endif %}
+        {% if market.end_date %}
+            <span class="meta-chip">Ends: {{ market.end_date | time_ago }}</span>
+        {% endif %}
+        {% if market.resolved %}
+            <span class="meta-chip meta-resolved">Resolved: {{ market.outcome | default("--") }}</span>
+        {% endif %}
+    </div>
+</div>
+
+{% if signals %}
+<h2 class="section-heading">Signals</h2>
+<div class="signal-list">
+    {% for signal in signals %}
+    <div class="signal-card {% if signal.conviction_score >= 80 %}signal-high{% elif signal.conviction_score >= 60 %}signal-med{% else %}signal-low{% endif %}">
+        <div class="signal-header">
+            <span class="conviction-badge {% if signal.conviction_score >= 80 %}badge-high{% elif signal.conviction_score >= 60 %}badge-med{% else %}badge-low{% endif %}">
+                {{ signal.conviction_score | round(1) }}
+            </span>
+            <span class="text-muted">{{ signal.timestamp | time_ago }}</span>
+        </div>
+        <div class="signal-body">
+            <div class="signal-outcome">{{ signal.outcome }}</div>
+            <div class="signal-scores">
+                <span class="score-chip" title="Smart Money">SM {{ signal.smart_money_score | round(1) }}</span>
+                <span class="score-chip" title="Volume Spike">VS {{ signal.volume_spike_score | round(1) }}</span>
+                <span class="score-chip" title="Cluster">CL {{ signal.cluster_score | round(1) }}</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h2 class="section-heading">Recent Bets</h2>
+
+{% if bets %}
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Wallet</th>
+                <th>Side</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bet in bets %}
+            <tr>
+                <td>{{ bet.timestamp | time_ago }}</td>
+                <td>
+                    <a href="/whales/{{ bet.wallet_address }}" class="table-link monospace">
+                        {{ bet.wallet_address | address }}
+                    </a>
+                </td>
+                <td>
+                    <span class="side-badge side-{{ bet.side | lower }}">{{ bet.side }}</span>
+                </td>
+                <td>{{ bet.amount | usd }}</td>
+                <td>{{ bet.price | round(3) }}</td>
+                <td>{{ bet.outcome_bet | default("--") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No bets recorded for this market.</p>
+</div>
+{% endif %}
+
+{% else %}
+<div class="empty-state">
+    <p>Market not found.</p>
+    <p class="text-muted">This market ID may not exist in the database.</p>
+    <a href="/markets" class="btn btn-primary">Back to Hot Markets</a>
+</div>
+{% endif %}
+{% endblock %}

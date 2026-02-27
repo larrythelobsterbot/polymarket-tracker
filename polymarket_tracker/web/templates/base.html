@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Whale Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="/" class="nav-brand">Whale Tracker</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link {% if page == 'feed' %}active{% endif %}">Live Feed</a>
+                <a href="/markets" class="nav-link {% if page == 'markets' %}active{% endif %}">Hot Markets</a>
+                <a href="/whales" class="nav-link {% if page == 'whales' %}active{% endif %}">Whales</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">Polymarket Whale Tracker</span>
+        </div>
+    </footer>
+</body>
+</html>

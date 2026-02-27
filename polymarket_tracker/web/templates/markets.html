@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Hot Markets - Whale Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Hot Markets <span class="text-muted">(Last {{ hours }}h)</span></h1>
+    <div class="filter-bar">
+        <form method="get" action="/markets" class="filter-form">
+            <label for="hours">Timeframe</label>
+            <select id="hours" name="hours" class="filter-input">
+                <option value="6" {% if hours == 6 %}selected{% endif %}>6h</option>
+                <option value="12" {% if hours == 12 %}selected{% endif %}>12h</option>
+                <option value="24" {% if hours == 24 %}selected{% endif %}>24h</option>
+                <option value="48" {% if hours == 48 %}selected{% endif %}>48h</option>
+                <option value="168" {% if hours == 168 %}selected{% endif %}>7d</option>
+            </select>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+{% if markets %}
+<div class="table-wrapper">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Market</th>
+                <th>Category</th>
+                <th>Signals</th>
+                <th>Max Conviction</th>
+                <th>Volume</th>
+                <th>Latest Signal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in markets %}
+            <tr>
+                <td>
+                    <a href="/markets/{{ m.market_id }}" class="table-link">
+                        {{ m.question | default(m.market_id) | truncate(80) }}
+                    </a>
+                </td>
+                <td>{{ m.category | default("--") }}</td>
+                <td>{{ m.signal_count }}</td>
+                <td>
+                    <span class="conviction-badge {% if m.max_conviction >= 80 %}badge-high{% elif m.max_conviction >= 60 %}badge-med{% else %}badge-low{% endif %}">
+                        {{ m.max_conviction | round(1) }}
+                    </span>
+                </td>
+                <td>{{ m.market_volume | usd }}</td>
+                <td>{{ m.latest_signal | time_ago }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state">
+    <p>No hot markets in the last {{ hours }} hours.</p>
+    <p class="text-muted">Markets with recent whale signals will appear here.</p>
+</div>
+{% endif %}
+{% endblock %}
